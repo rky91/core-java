@@ -2,11 +2,21 @@ package com.rky.cube.domain;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
 public class ProductGroup {
 	
+	@Id
+	@GeneratedValue
 	private long id;
 	private String name;
 	private String note;
+	
+	@OneToMany
 	private List<Product> listOfProd;
 	
 	public ProductGroup() {}

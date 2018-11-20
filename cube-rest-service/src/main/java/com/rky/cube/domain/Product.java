@@ -2,26 +2,42 @@ package com.rky.cube.domain;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import com.rky.cube.enumproperty.ProductType;
 import com.rky.cube.enumproperty.UOM;
 
+
+@Entity
 public class Product {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String name;
+	
+	@Enumerated(value=EnumType.STRING)
 	private ProductType type;
+	@Enumerated(value=EnumType.STRING)
 	private UOM uom;
 	private double pricePerUnit;
 	private double weightPerUnit;
 	private double availableQty;
 	private Date lastUpdated;
 	private String updatedBy;
+	private String description;
+	
 	private long prodGrpId;
 	
 	public Product() {}
 
 	public Product(String name, ProductType type, UOM uom, double pricePerUnit, double weightPerUnit,
-			double availableQty, Date lastUpdated, String updatedBy, long prodGrpId) {
+			double availableQty, Date lastUpdated, String updatedBy, long prodGrpId, String description) {
 		super();
 		this.name = name;
 		this.type = type;
@@ -32,6 +48,7 @@ public class Product {
 		this.lastUpdated = lastUpdated;
 		this.updatedBy = updatedBy;
 		this.prodGrpId = prodGrpId;
+		this.setDescription(description);
 	}
 
 	public long getId() {
@@ -112,6 +129,14 @@ public class Product {
 
 	public void setProdGrpId(long prodGrpId) {
 		this.prodGrpId = prodGrpId;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Override
