@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorator="layouts/main">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Invoice</title>
+<style type="text/css">
+
+	.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+		border-top:0px;
+	}
+</style>
+</head>
+<body>
+
+	<div layout:fragment="content">
+	<button type="button" class="btn btn-primary" id="btnPrint">Print</button>
+		<div class="panel panel-default" id="masterContent">
+            <div class="panel-heading">
+                <h3 class="panel-title">Invoice <span th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}">12/12/2018</span></h3></div>
+            <div class="panel-body" >
+            	
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body" style="padding-top:0px;">
+                                <h3 style="font-family:Aldrich, sans-serif;">Sikdar Jewellers</h3>
+                                <h5 style="font-family:Aldrich, sans-serif;">Plot No. 1/10</h5>
+                                <h5 style="font-family:Aldrich, sans-serif;">Nabadwip </h5>
+                                <h5 style="font-family:Aldrich, sans-serif;">Kolkata </h5>
+                                <h5 style="font-family:Aldrich, sans-serif;">Pin: 700585</h5>
+                                <h5 style="font-family:Aldrich, sans-serif;">West Bengal, India</h5>
+                                <h5 style="font-family:Aldrich, sans-serif;">Ph. +91 9088817000</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body" style="padding-top:0px; min-height: 221px;">
+                            	<h3 style="font-family:Aldrich, sans-serif;" th:text="${customer.name}">Mama Jewellers</h3>
+                                <h5 style="font-family:Aldrich, sans-serif;" th:text="${customer.email}">Plot No. 1/10</h5>
+                                <h5 style="font-family:Aldrich, sans-serif;" th:text="${customer.phoneNo}">Nabadwip </h5>
+                                <h5 style="font-family:Aldrich, sans-serif;" th:text="${customer.address}">Kolkata </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:20px;">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                    	<th style="font-family:Aldrich, sans-serif;" >#</th>
+                                        <th style="font-family:Aldrich, sans-serif;" >PRODUCT DESCRIPTION </th>
+                                        <th style="font-family:Aldrich, sans-serif;" >QUANTITY </th>
+                                        <th style="font-family:Aldrich, sans-serif;" class="text-center">PRICE BREAK DOWN ( <i class="fa fa-rupee" style="font-size: 15px;"> </i> )</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                	<tr th:each="product,count : ${prodCommands}">
+                                		<td th:text="${count.count}"></td>
+                                        <td>
+                                            <div class="table-responsive">
+                                                <table class="table table-sm">
+                                                    <tbody>
+                                                    	<tr>
+                                                           <th>Name </th>
+                                                           <td th:text="${product.productName}">>Finger Ring with Wave Design </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Type </td>
+                                                            <td th:text="${product.productType}">Gold </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Weight </td>
+                                                            <td><span th:text="${product.productWeight} + ' Gram'">1.78gm</span> (per <span th:text="${product.uom}">peice</span>)</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span>1</span>
+                                        </td>
+                                        <td>
+                                            <div class="table-responsive">
+                                                <table class="table table-sm">
+                                                    <thead>
+                                                        <tr></tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Gold price</td>
+                                                            <td class="text-right" th:text="${#numbers.formatDecimal(product.productPrice,2,2)}">25000.00 </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>labour Charge</td>
+                                                            <td class="text-right" th:text="${#numbers.formatDecimal(product.labourCharge,2,2)}">5000.00 </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>GST 5%</td>
+                                                            <td class="text-right" th:text="${#numbers.formatDecimal(product.GST,2,2)}">6000.00 </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Total</strong> </td>
+                                                            <td class="text-right"><strong th:text="${#numbers.formatDecimal(product.effectiveProductPrice,2,2)}">36000.00 </strong></td>
+                                                        </tr>
+                                                        <tr></tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+	                <div class="col-md-8">
+	                    <span style="font-size: 22px; font-family: Aldrich, sans-serif;">Grand Total
+							Price </span>
+	                </div>
+	                <div class="col-md-4" style="text-align: right;">
+	                    <span><i class="fa fa-rupee" style="font-size: 15px;"> </i></span>
+	                    <span style="font-size: 22px; font-family: Aldrich, sans-serif;" 
+	                    	th:text="${#numbers.formatDecimal(grandTotal,2,2)}">250054.00</span>
+	                </div>
+	            </div>
+	            <hr />
+	            <div class="row">
+				    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
+				    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+				    	<img src="biswakarmaj3.png" th:src="@{/assets/img/biswakarmaj.png}" class="img-responsive" />
+				    </div>
+				    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
+				</div>
+                
+            </div>
+        </div>
+        <script src="assets/js/printThis.js"  th:src="@{/assets/js/printPreview.js}"></script>
+        <script type="text/javascript">
+        $(document).ready(function() {
+	    	$('#printBtn').click(function (e) {
+	    		
+	    		$("#invoice").show();
+	    	    window.print();
+	            
+	        });
+	    	
+	    	$("#btnPrint").printPreview({
+                obj2print:'#masterContent',
+                width:'810'
+            });
+	    })
+        </script>
+	</div>
+
+</body>
+</html>

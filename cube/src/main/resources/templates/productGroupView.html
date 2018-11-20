@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html  lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorator="layouts/main">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="row" style="padding:11px;">
+            <div class="col-md-7">
+                <div class="row">
+                    <div class="col-md-1"><i class="material-icons" style="padding:0px;margin-top:5px;">grain</i></div>
+                    <div class="col-md-9"><span style="font-family:Aldrich, sans-serif;font-size:24px;">PRODUCT GROUP</span></div>
+                </div>
+            </div>
+        </div>
+        <hr />
+		<div class="panel panel-primary">
+	    	<div class="panel-heading">
+	        <h3 class="panel-title prodTablePanelTitle">Product Groups  &nbsp; &nbsp;<a href="#" th:href="@{/product/addNewProductGroup}" style="font-size:15px;">(Add Product Group)</a></h3></div>
+		    <div class="panel-body">
+		        <div class="table-responsive">
+		            <table class="table">
+		                <thead>
+		                    <tr>
+		                        <th class="productTableHeader">Group Code</th>
+		                        <th class="productTableHeader">Group Name </th>
+		                        <th class="productTableHeader">Comments</th>
+		                        <th class="productTableHeader">Products</th>
+		                        <th class="productTableHeader"> <i class="glyphicon glyphicon-cog"></i> Action</th>
+		                    </tr>
+		                </thead>
+		                <tbody>
+		                    <tr th:each="productGroup : ${productGroups}">
+		                        <td th:text="${productGroup.groupNumber}">Cell 1</td>
+		                        <td th:text="${productGroup.groupName}">Cell 2</td>
+		                        <td th:text="${productGroup.comments}">Cell 3</td>
+		                        <td> 
+		                        	<a href= "#" th:href="@{'productGroup/' + ${productGroup.id} + '/' + ${productGroup.groupName}}">
+		                                	<i class="glyphicon glyphicon-list"></i> Lists
+		                             </a>
+		                        </td>
+		                        <td>
+		                            <div role="group" class="btn-group">
+		                                <a class="btn btn-warning" style="margin-left: 2px;" href= "#" 
+		                                		th:href="@{'/product/productGroup/' + ${productGroup.id} + '/update'}">
+		                                	<i class="glyphicon glyphicon-edit"></i>
+		                                </a>
+		                                
+		                                <a class="btn btn-danger" style="margin-left: 2px;" href= "#" 
+		                                		th:href="@{'productGroup/' + ${productGroup.id} + '/delete'}">
+		                                	<i class="glyphicon glyphicon-trash"></i>
+		                                </a>
+		                            </div>
+		                        </td>
+		                    </tr>
+		                </tbody>
+		            </table>
+		        </div>
+		    </div>
+		</div>
+	</div>
+</body>
+</html>

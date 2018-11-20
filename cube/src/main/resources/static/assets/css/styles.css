@@ -1,0 +1,65 @@
+.input-group.prod-input-grp {
+  margin-top:13px;
+}
+
+#quantity{
+	width: 100px;
+	padding: 0px;
+	border: 0px;
+}
+
+.img-rounded.menu-img{
+	
+	width:121px;
+	height:120px;
+}
+
+#productNameParent{
+	min-height:369px;
+	background-color:rgba(244,250,252,0);
+	padding:0px;
+	padding-left:31px;
+	padding-right:0px;
+	padding-top:20px;
+}
+
+#productNameChild{
+	font-size:25px;
+	color:rgb(227,70,48);
+	font-family:Aldrich, sans-serif;
+}
+
+#productImageDiv{
+	padding-right:0px;
+	padding-left:5px;
+	background-color:rgba(163,26,26,0);
+}
+
+#productImage{
+	width:367px;
+	height:368px;
+}
+
+.productTableHeader{
+	font-family:Aldrich, sans-serif;
+	font-size:15px;
+}
+.prodTablePanelTitle{
+	font-family:Aldrich, sans-serif;
+	font-size:24px;
+}
+
+/* Sale CSS  */
+
+.input-group.sale-input-grp {
+  margin-top:13px;
+}
+
+
+.autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
+.autocomplete-suggestion { padding: 5px 5px; white-space: nowrap; overflow: hidden; font-size:22px}
+.autocomplete-selected { background: #F0F0F0; }
+.autocomplete-suggestions strong { font-weight: bold; color: #3399FF; }
+
+
+

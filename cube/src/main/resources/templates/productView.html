@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html  lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorator="layouts/main">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Products</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="row" style="padding:11px;">
+            <div class="col-md-7">
+                <div class="row">
+                    <div class="col-md-1"><i class="material-icons" style="padding:0px;margin-top:5px;">grain</i></div>
+                    <div class="col-md-9"><span style="font-family:Aldrich, sans-serif;font-size:24px;">Items</span></div>
+                </div>
+            </div>
+        </div>
+        <hr />
+		<div class="panel panel-primary">
+	    	<div class="panel-heading">
+	        <h3 class="panel-title prodTablePanelTitle" th:text="${prodGroupName}">Panel Heading</h3></div>
+		    <div class="panel-body">
+		        <div class="table-responsive">
+		            <table class="table">
+		                <thead>
+		                    <tr>
+		                        <th  class="productTableHeader">Product Name</th>
+		                        <th  class="productTableHeader">ProductType </th>
+		                        <th  class="productTableHeader">In-Stock </th>
+		                        <th  class="productTableHeader">Quantity Available</th>
+		                        <th  class="productTableHeader">Price </th>
+		                        <th  class="productTableHeader">Updated By</th>
+		                        <th  class="productTableHeader">Last Updated </th>
+		                        <th  class="productTableHeader"> <i class="glyphicon glyphicon-cog"></i> Action</th>
+		                    </tr>
+		                </thead>
+		                <tbody>
+		                    <tr th:each="product : ${products}">
+		                        <td th:text="${product.productName}">Cell 1</td>
+		                        <td th:text="${product.productType}">Cell 1</td>
+		                        <td th:text="${product.availability}">Cell 1</td>
+		                        <td th:text="${product.availQty} + ' ' + ${product.uom}">Cell 1</td>
+		                        <td th:text="${product.productPrice}">Cell 1</td>
+		                        <td th:text="${product.lastUpdatedBy}">Cell 1</td>
+		                        <td th:text="${product.lastUpdated}">Cell 1</td>
+		                        <td>
+		                            <div role="group" class="btn-group">
+		                            	<a class="btn btn-primary" href= "#" 
+		                                		th:href="@{'/product/' + ${product.id} + '/view'}"> 
+		                                		<i class="glyphicon glyphicon-eye-open"></i>
+		                                </a>
+		                                <a class="btn btn-warning" href= "#" 
+		                                		th:href="@{'/product/' + ${product.id} + '/update'}" style="margin-left: 2px;"> 
+		                                		<i class="glyphicon glyphicon-edit"></i>
+		                                </a>
+		                                <a class="btn btn-danger" 
+		                                	th:href="@{'/product/' + ${product.id} + '/delete'}" type="button" style="margin-left: 2px;">
+		                                	<i class="glyphicon glyphicon-trash"></i>
+		                                </a>
+		                            </div>
+		                        </td>
+		                    </tr>
+		                </tbody>
+		            </table>
+		        </div>
+		    </div>
+		</div>
+	</div>
+</body>
+</html>

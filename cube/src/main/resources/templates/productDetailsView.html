@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorator="layouts/main">
+<head>
+<meta charset="ISO-8859-1" />
+	<title>Products</title>
+	<script type="text/javascript">
+	
+	$(document).ready(function() {
+		
+		//$("#addToCart").style.cursor = "pointer";
+		$('#addToCart').css( 'cursor', 'pointer' );
+		
+	});
+	</script>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="row" style="padding:11px;">
+            <div class="col-md-7">
+                <div class="row">
+                    <div class="col-md-1"><i class="material-icons" style="padding:0px;margin-top:5px;">grain</i></div>
+                    <div class="col-md-9"><span style="font-family:Aldrich, sans-serif;font-size:24px;">PRODUCT</span></div>
+                </div>
+            </div>
+        </div>
+        <hr />
+		<div class="panel panel-default panel-primary">
+		    <div class="panel-heading">
+		        <h3 class="panel-title" style="font-family:Aldrich, sans-serif">Product Details</h3></div>
+		    <div class="panel-body" style="padding-right:11px;padding-left:0px;">
+		        <div class="row" style="margin:0px;">
+		            <div class="col-md-12 col-md-5" id="productImageDiv">
+		            	<img src="assets/img/products/No_Image_Available.png" id="productImage" 
+		            		th:src="@{'/product/' + ${prodCommand.id} + '/imageView'}"/>
+		            </div>
+		            <div class="col-md-12 col-md-7" id="productNameParent"><span id="productNameChild" th:text="${prodCommand.productName}">Finger Ring with Wave Design </span>
+		                <h5 th:text="${prodCommand.description}">22KT Yellow Gold Finger Ring with Wave Design </h5>
+		                <hr />
+		                <div style="padding-top:0px;">
+		                	<span style="font-size:22px;font-family:Aclonica, sans-serif;">₹ </span>
+		                	<span style="font-size:22px;font-family:Aclonica, sans-serif;" th:text="${prodCommand.productPrice}">15657.00* </span>
+		                	<span style="font-size:22px;font-family:Aclonica, sans-serif;">* </span>
+		                	<span>(*Weight and Price shown may vary / change slightly) </span>
+		                	<input id="productId" type="hidden" th:field="${prodCommand.id}"/>
+		                    <div>
+		                        <div class="table-responsive">
+		                            <table class="table">
+		                                <tbody>
+		                                    <tr>
+		                                        <td>Weight </td>
+		                                        <td>
+		                                        	<span th:text="${prodCommand.productWeight} + 'gm'">1.78gm</span> 
+		                                        	 (per <span th:text="${prodCommand.uom}">peice</span>)
+		                                        </td>
+		                                    </tr>
+		                                    <tr>
+		                                        <td>Product Type </td>
+		                                        <td th:text="${prodCommand.productType}">Gold </td>
+		                                    </tr>
+		                                    <tr>
+		                                        <td>Availibility </td>
+		                                        <td th:text="${prodCommand.availability}">Yes </td>
+		                                    </tr>
+		                                    <tr>
+		                                        <td>Available Qty (in numbers)</td>
+		                                        <td th:text="${prodCommand.availQty}">15</td>
+		                                    </tr>
+		                                    <tr>
+		                                        <td>Updated by</td>
+		                                        <td th:text="${prodCommand.lastUpdatedBy}">Rakesh (on 12/05/2018)</td>
+		                                    </tr>
+		                                    <tr>
+		                                    	
+		                                    	<td>
+						                            <a data-toggle="modal" data-target="#exampleModal">
+													  upload Image
+													</a>
+		                                    	</td>
+		                                    	<td>
+		                                    		<!-- <a href="#" th:href="@{'/sale/'+ ${prodCommand.getId()} + '/updateCart'}">
+													  Add for Sale
+													</a> -->
+													<!-- <b id="addToCart" onclick="addToCart()">
+													  Add for Sale
+													</b> -->
+													
+													<button class="btn btn-default btn-primary" type="button" id="addToCart" onclick="addToCart()" >
+														<i class="glyphicon glyphicon-plus"></i> Add To Cart
+													</button>
+		                                    	</td>
+		                                    </tr>
+		                                </tbody>
+		                            </table>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		    	<form  action="http:\\localhost" method="post" enctype="multipart/form-data"
+		    	th:action="@{'/product/'+ ${prodCommand.getId()} + '/image'}">
+		      <div class="modal-header">
+		        <h5 class="modal-title">Upload Image</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+			      <div class="modal-body">
+			        
+	                  <label class="control-label">Select File</label>
+	                  <input id="imagefile" name="imagefile" type="file" class="file" />
+	                
+			      </div>
+		      <div class="modal-footer">
+		        <button type="submit" class="btn btn-primary">Save</button>
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		      </div>
+		      
+		      </form>
+		    </div>
+		  </div>
+		</div>
+	</div>
+</body>
+</html>

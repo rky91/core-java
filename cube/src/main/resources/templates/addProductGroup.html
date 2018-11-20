@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"
+xmlns:th="http://www.thymeleaf.org"
+	layout:decorator="layouts/main">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<body>
+	<div layout:fragment="content">
+	<div class="container">
+	<div class="panel panel-primary">
+    	<div class="panel-heading">
+        	<h3 class="panel-title">Add New Product Group &nbsp; &nbsp; 
+        	(<a href="#" th:href="@{/product/listofProductGroup}">View Product Group</a>)</h3>
+        </div>
+	    <div class="panel-body">
+	    	<form th:object="${productGroup}" th:action="@{/product/saveProductGroup}">
+	        <div class="row">
+	        	<input type="hidden" th:field="*{id}"/>
+	            <div class="col-md-12 col-md-6">
+	                <div class="input-group prod-input-grp">
+	                    <div class="input-group-addon"><span>Group Code</span></div>
+	                    <input type="text" class="form-control" th:field="*{groupNumber}"/>
+	                </div>
+	                <div class="input-group prod-input-grp">
+	                    <div class="input-group-addon"><span>Group Name</span></div>
+	                    <input type="text" class="form-control" th:field="*{groupName}"/>
+	                </div>
+	            </div>
+	            <div class="col-md-12 col-md-6">
+	                <div class="input-group prod-input-grp">
+	                    <div class="input-group-addon"><span>Comments</span></div>
+	                    <input type="text" class="form-control" th:field="*{comments}"/>
+	                </div>
+	                <div class="input-group prod-input-grp">
+                        <div role="group" class="btn-group">
+						    <button class="btn btn-primary" type="submit">Submit</button>
+						    <button class="btn btn-warning" type="reset" style="margin-left:14px;">Reset</button>
+						</div>
+                    </div>
+	            </div>
+	        </div>
+	        </form>
+	    </div>
+	</div>
+	</div>
+	</div>
+
+</body>
+</html>

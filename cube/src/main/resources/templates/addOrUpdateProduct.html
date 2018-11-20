@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en"
+xmlns:th="http://www.thymeleaf.org"
+	layout:decorator="layouts/main">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Add/Update Product</title>
+</head>
+<body>
+	<div layout:fragment="content">
+	<div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title"><b th:text="${panelValue}">Product</b>  &nbsp; &nbsp;(<a href="#" th:href="@{/product/addNewProductGroup}">Add Product Group</a>)</h3> 
+        	</div>
+            <div class="panel-body">
+                <form th:object="${prodCommand}" th:action="@{/product/saveProduct}">
+                	<input type="hidden" th:field="*{id}"/>
+                    <div class="row">
+                        <div class="col-md-12 col-md-6">
+                        	<div class="input-group prod-input-grp">
+                                <div class="input-group-addon"><span>Product Group</span></div>
+                                
+                                <select class="form-control" name="prodGrpId" th:field="*{productGroupId}">
+                                        <option th:each="productGrpEach : ${productGroupList}"
+                                                th:value="${productGrpEach.id}"
+                                                th:selected="${productGrpEach.id.equals(prodCommand.productGroupId)}"
+                                                th:text="${productGrpEach.groupName}">Gold</option>
+                               	</select>
+                            </div>
+                            <div class="input-group prod-input-grp">
+                                <div class="input-group-addon"><span>Product Name</span></div>
+                                <input type="text" class="form-control" th:field="*{productName}" />
+                            </div>
+                            <div class="input-group prod-input-grp">
+                                <div class="input-group-addon"><span>Product Type</span></div>
+                                
+                                <select class="form-control" th:field="*{productType}">
+                                	<option th:each="prodType : ${T(com.cube.domain.enumproperty.ProductType).values()}"
+                                                th:value="${prodType.name()}"
+                                                th:text="${prodType.name()}">
+                                    </option>
+                                
+                                </select>
+                            </div>
+                            <div class="input-group prod-input-grp">
+                                <div class="input-group-addon"><span>Availability</span></div>
+                                <select class="form-control" th:field="*{availability}">
+                                	<option th:each="availableValue : ${T(com.cube.domain.enumproperty.Availability).values()}"
+                                                th:value="${availableValue.name()}"
+                                                th:text="${availableValue.name()}">
+                                    </option>
+                                </select>
+                            </div>
+                            
+                            <div class="input-group prod-input-grp">
+                                <div class="input-group-addon"><span>Description</span></div>
+                                <textarea class="form-control" rows="3" th:field="*{description}"></textarea>
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-12 col-md-6">
+                        	<div class="input-group prod-input-grp">
+                                <div class="input-group-addon"><span>Available Qty</span></div>
+                                <input type="number" class="form-control"  th:field="*{availQty}"/>
+                                <div class="input-group-addon" id="quantity">
+                                	<select class="form-control"  id="quantityEach"  onchange="myFunction()" th:field="*{uom}">
+	                                	<option th:each="uomValue : ${T(com.cube.domain.enumproperty.UnitOfMeasure).values()}"
+	                                                th:value="${uomValue.name()}"
+	                                                th:text="${uomValue.name()}">
+	                                    </option>
+									</select>
+								</div>
+                            </div>
+                            <div class="input-group prod-input-grp">
+                                <div class="input-group-addon"><span>Product Price</span></div>
+                                <input type="number" class="form-control"  th:field="*{productPrice}"/>
+                                <div class="input-group-addon"><span>Rs. per <span id="changeValue" th:text="*{uom}"></span></span></div>
+                            </div>
+                            
+                            <div class="input-group prod-input-grp">
+                                <div class="input-group-addon"><span>Weight</span></div>
+                                <input type="number" class="form-control"  th:field="*{productWeight}"/>
+                                <div class="input-group-addon"><span>Grams (per <span id="changeValue2" th:text="*{uom}"></span>)</span></div>
+                            </div>
+                            
+                            <div class="input-group prod-input-grp">
+                                <div class="input-group-addon"><span>Updated By</span></div>
+                                <input class="form-control" type="text"  th:field="*{lastUpdatedBy}"/>
+                                <div class="input-group-addon"><span>on 12/11/2017</span></div>
+                            </div>
+                            
+                            <div class="input-group prod-input-grp">
+                            	<div role="group" class="btn-group">
+								    <button class="btn btn-primary" type="submit">Submit</button>
+								    <button class="btn btn-warning" type="reset" style="margin-left:14px;">Reset</button>
+								</div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+		function myFunction() {
+		    var x = document.getElementById("quantityEach").value;
+		    document.getElementById("changeValue").innerHTML = x;
+		    document.getElementById("changeValue2").innerHTML = x;
+		}
+	</script>
+	</div>
+	
+</body>
+</html>

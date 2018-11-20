@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans:100,300,400" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amaranth" />
+    
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css" th:href="@{/assets/fonts/font-awesome.min.css}"/>
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css" th:href="@{/assets/fonts/ionicons.min.css}"/>
+    <link rel="stylesheet" href="assets/fonts/material-icons.min.css"  th:href="@{/assets/fonts/material-icons.min.css}"/>
+    <link rel="stylesheet" href="assets/css/Dynamic-Table.css" th:href="@{/assets/css/Dynamic-Table.css}"/>
+    <link rel="stylesheet" href="assets/css/Footer-Clean.css" th:href="@{/assets/css/Footer-Clean.css}"/>
+    <link rel="stylesheet" href="assets/css/styles.css" th:href="@{/assets/css/styles.css}"/>
+    <link rel="stylesheet" href="assets/css/jquery-ui.css" th:href="@{/assets/css/jquery-ui.css}"/>
+    
+    <script src="assets/js/jquery.min.js"  th:src="@{/assets/js/jquery.min.js}"></script>
+    
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header"><a class="navbar-brand navbar-link" href="#">Admin Dash</a>
+                    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                </div>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active" role="presentation"><a href="#" th:href="@{/}">Home </a></li>
+                        <li role="presentation"><a href="#" th:href="@{/inventory}">Item Inventory</a></li>
+                        <li role="presentation"><a href="#" th:href="@{/product/addNewProduct}">Add Product</a></li>
+                        <li role="presentation"><a href="#" th:href="@{/product/listOfProducts}">View Products</a></li>
+                        <li role="presentation"><a href="#" th:href="@{/cart/home}"><i class="glyphicon glyphicon-shopping-cart"></i> 
+                        		<span class="badge" id="cartNotification" th:text="${session.cartCount.count}">7</span>
+                        	</a>
+                        </li>
+                        <li class="dropdown">
+				          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-user"></i> &nbsp; 
+				          <span sec:authentication="name">Guest</span> <span class="caret"></span></a>
+				          <ul class="dropdown-menu">
+				            <li><a href="javascript:{}" onclick="document.getElementById('frmlogout').submit(); return false;"> <i class="glyphicon glyphicon-log-out"></i> &nbsp;Logout</a></li>
+				          </ul>
+				        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <form sec:authorize="isAuthenticated()" id="frmlogout" th:action="@{/logout}" method="post" class="form-inline"></form>
+    <!-- This is the container that will hold the layer of other html files -->
+    
+    <div class="container" layout:fragment="content" style="min-height:440px;">
+       
+    </div>
+    
+    
+    
+     <div class="footer-clean">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-4 item">
+                        <h3> </h3><img src="assets/img/AdminDash_logo_1.0.png" th:src="@{/assets/img/logo-Cube.jpg}"
+                        style="height:121px;padding:0px;margin-top:-33px;" />
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-sm-4 item">
+                        <h3>About</h3>
+                        <ul>
+                            <li><a href="#">Company</a></li>
+                            <li><a href="#">Team</a></li>
+                            <li><a href="#">Legacy</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-sm-4 item">
+                        <h3>Careers</h3>
+                        <ul>
+                            <li><a href="#">Job openings</a></li>
+                            <li><a href="#">Employee success</a></li>
+                            <li><a href="#">Benefits</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a>
+                        <p class="copyright">Cube © 2016</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    
+    <script src="assets/js/jquery-ui.js"  th:src="@{/assets/js/jquery-ui.js}"></script>
+    <script src="assets/js/sale.js"  th:src="@{/assets/js/sale.js}"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"  th:src="@{/assets/bootstrap/js/bootstrap.min.js}"></script>
+    <script src="assets/bootstrap/js/bs-animation.js"  th:src="@{/assets/bootstrap/js/bs-animation.js}"></script>
+</body>
+
+</html>

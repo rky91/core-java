@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin</title>
+    
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans:100,300,400" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700" />
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css" th:href="@{/assets/fonts/font-awesome.min.css}"/>
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css" th:href="@{/assets/fonts/ionicons.min.css}"/>
+    <link rel="stylesheet" href="assets/css/dh-header-non-rectangular.css" th:href="@{/assets/css/dh-header-non-rectangular.css}"/>
+    <link rel="stylesheet" href="assets/css/Dynamic-Table.css" th:href="@{/assets/css/Dynamic-Table.css}"/>
+    <link rel="stylesheet" href="assets/css/Footer-Clean.css" th:href="@{/assets/css/Footer-Clean.css}"/>
+    <link rel="stylesheet" href="assets/css/MUSA_panel-table.css" th:href="@{/assets/css/MUSA_panel-table.css}"/>
+    <link rel="stylesheet" href="assets/css/MUSA_panel-table1.css" th:href="@{/assets/css/MUSA_panel-table1.css}"/>
+    <link rel="stylesheet" href="assets/css/styles.css" th:href="@{/assets/css/styles.css}"/>
+    <link rel="stylesheet" href="assets/css/Google-Style-Login.css" th:href="@{/assets/css/Google-Style-Login.css}"/>
+    
+    
+</head>
+
+<body>
+   <nav class="navbar navbar-default">
+   	  <div class="container-fluid">
+            <div class="navbar-header"><a href="#" class="navbar-brand navbar-link">Admin Dash</a>
+                <button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+            </div>
+            <div class="collapse navbar-collapse" id="navcol-1"></div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="login-card"><img src="assets/img/avatar_2x.png" class="profile-img-card" />
+            <p class="profile-name-card"> </p>
+            <div th:if="${param.error}" class="alert alert-danger">    
+                Invalid username and password.
+            </div>
+            <div th:if="${param.logout}" class="alert alert-success"> 
+                You have been logged out.
+            </div>
+            <form class="form-signin"  th:action="@{/login}" method="post">
+            	<span class="reauth-email"> </span>
+                <input class="form-control" type="text" name="username" placeholder="Email address" id="inputEmail" />
+                <input class="form-control" type="password" name="password" placeholder="Password" id="inputPassword" />
+                <div class="checkbox">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" />Remember me</label>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-block btn-lg btn-signin" type="submit">Sign in</button>
+            </form><a href="#" class="forgot-password">Forgot your password?</a></div>
+    </div>
+    <div class="footer-clean">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-4 item">
+                        <h3> </h3><img src="assets/img/logo-Cube.jpg" style="height:121px;padding:0px;margin-top:-33px;" />
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-sm-4 item">
+                        <h3>About</h3>
+                        <ul>
+                            <li><a href="#">Company</a></li>
+                            <li><a href="#">Team</a></li>
+                            <li><a href="#">Legacy</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-sm-4 item">
+                        <h3>Careers</h3>
+                        <ul>
+                            <li><a href="#">Job openings</a></li>
+                            <li><a href="#">Employee success</a></li>
+                            <li><a href="#">Benefits</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a>
+                        <p class="copyright">Company Name © 2016</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

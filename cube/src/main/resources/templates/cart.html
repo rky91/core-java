@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorator="layouts/main">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart</title>
+    <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css" th:href="@{/assets/css/Contact-Form-Clean.css}" />
+    <script type="text/javascript">
+	    $(document).ready(function() {
+	    	$('.abc').click(function (e) {
+	            e.preventDefault();
+	            deleteFromCart($(this).attr('href'));
+	        });
+	    })
+    </script>
+</head>
+
+<body>
+    <div layout:fragment="content" th:switch="${status}">
+		<div th:case="'false'">
+			<div class="panel panel-default">
+
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+							<img src="assets/img/no_product.gif"  th:src="@{/assets/img/products/no_product.gif}"/>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+							<a class="btn btn-info btn-lg" role="button" href="#" th:href="@{/product/listofProductGroup}"
+								data-bs-hover-animate="pulse"
+								style="width: 100%; font-family: Aldrich, sans-serif;">Please select product</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div th:case="'true'">
+            <div class="row" style="padding: 11px;">
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <i class="material-icons" style="padding: 0px; margin-top: 5px;">local_mall</i>
+                        </div>
+                        <div class="col-md-9">
+                            <span style="font-family: Aldrich, sans-serif; font-size: 24px;">Shopping
+								Bag</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="font-family: Aldrich, sans-serif;">
+                                        <p class="text-center">PRODUCT</p>
+                                    </th>
+                                    <th style="font-family: Aldrich, sans-serif;">
+                                        <p class="text-left">DESCRIPTION</p>
+                                    </th>
+                                    <th style="font-family: Aldrich, sans-serif;">
+                                        <p class="text-left">QUANTITY</p>
+                                    </th>
+                                    <th style="font-family: Aldrich, sans-serif;">
+                                        <p class="text-left">PRICE <i class="fa fa-rupee" style="font-size: 15px;"> </i></p>
+                                    </th>
+                                    <th style="font-family: Aldrich, sans-serif;">
+                                        <p class="text-center">REMOVE</p>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="product : ${products}">
+
+                                    <td colspan="0" style="width: 15%;">
+                                        <img src="assets/img/500005FNANAA02.jpg" style="width: 155px; height: 155px;" th:src="@{'/product/' + ${product.id} + '/imageView'}" /></td>
+                                    <td>
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th colspan="2" th:text="${product.productName}">Finger Ring with Wave Design</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Type</td>
+                                                        <td th:text="${product.productType}">Gold</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Weight</td>
+                                                        <td><span th:text="${product.productWeight} + ' Gram'">1.78gm</span> (per <span th:text="${product.uom}">peice</span>)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Price (per Product)</td>
+                                                        <td th:text="${#numbers.formatDecimal(product.productPrice,2,2)}">25458.00</td>
+                                                    </tr>
+                                                    <!-- <tr>
+                                                    <td>Stone </td>
+                                                    <td>white</td>
+                                                </tr> -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <select>
+												<optgroup label="Quantity">
+													<th:block
+														th:each="i : ${#numbers.sequence(1,product.availQty)}">
+														<option th:value="${i}" th:text="${i}">2</option>
+													</th:block>
+													<!-- <option value="12" selected="">1</option>
+                                                <option value="3">3</option> -->
+												</optgroup>
+											</select>
+                                        </div>
+                                    </td>
+                                    <td th:text="${#numbers.formatDecimal(product.productPrice,2,2)}">25458.00</td>
+                                    <td align="center">
+                                    	<a href="ok" th:href="@{${product.id}}" class="abc"> 
+                                    		<i class="glyphicon glyphicon-remove" data-bs-hover-animate="jello" style="font-size: 19px;"></i>
+										</a>
+									</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-8">
+                    <span style="font-size: 22px; font-family: Aldrich, sans-serif;">Total
+						Price </span>
+                    <div>
+                        <span style="color: rgb(27, 9, 239);">(*price is excluding
+							GST &amp; laour charge, final price will be available after
+							placing the order) </span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <span><i class="fa fa-rupee" style="font-size: 15px;"> </i></span>
+                    <span style="font-size: 22px; font-family: Aldrich, sans-serif;" 
+                    	th:text="${#numbers.formatDecimal(totalCartPrice,2,2)}">250054.00</span>
+                </div>
+            </div>
+            <form method="post" th:object="${customer}" th:action="@{/cart/checkout}">
+            <div class="row">
+                <div class="col-md-8"></div>
+                <div class="col-md-4">
+                    <button class="btn btn-primary" type="submit" data-bs-hover-animate="pulse" style="width: 100%; font-size: 16px; font-family: Aldrich, sans-serif;">Place Order</button>
+                </div>
+            </div>
+            <hr />
+            <div class="row" style="margin-top: 9px; margin-left: -5px;">
+                <div class="col-lg-8 col-md-8 col-sm-8">
+                    
+                        <h2 class="text-center" style="font-family: Aldrich, sans-serif; font-size: 16px;">CUSTOMER ADDRESS
+                        </h2>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="name" placeholder="Name" th:field="*{name}"/>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="email" name="email" placeholder="Email" inputmode="email" th:field="*{email}" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="number" name="phNumber" placeholder="Phone Number" th:field="*{phoneNo}" />
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control input-sm" rows="8" wrap="hard" name="message" placeholder="Address"
+                             th:field="*{address}"></textarea>
+                        </div>
+                        <div class="form-group"></div>
+                </div>
+            </div>
+            </form>
+            <hr />
+        </div>
+    </div>
+</body>
+
+</html>

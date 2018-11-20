@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html  lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorator="layouts/main">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Insert title here</title>
+<style type="text/css">
+
+.ui-autocomplete {
+ position:absolute;
+    cursor:default;
+    z-index:1001 !important
+}
+</style>
+
+</head>
+<body>
+<div layout:fragment="content">
+	<div class="panel panel-default">
+    	<div class="panel-heading">
+        <h3 class="panel-title">Sale</h3></div>
+	    <div class="panel-body">
+	        <form>
+	            <div class="row">
+	                <div class="col-md-12 col-md-6">
+	                    <div class="input-group sale-input-grp">
+	                        <div class="input-group-addon"><span>Product Code</span></div>
+	                        <input type="text" class="form-control" />
+	                        <div class="input-group-btn">
+	                            <button class="btn btn-default" type="button">Go!</button>
+	                        </div>
+	                    </div>
+	                    <div class="input-group sale-input-grp">
+	                        <div class="input-group-addon"><span>Product Name</span></div>
+	                        <input type="text" class="form-control" />
+	                    </div>
+	                    <div class="input-group sale-input-grp">
+	                        <div class="input-group-addon"><span>product Type</span></div>
+	                        <input type="text" class="form-control" />
+	                    </div>
+	                    <div class="input-group sale-input-grp">
+	                        <div class="input-group-addon"><span>Quanity </span></div>
+	                        <input type="text" class="form-control" />
+	                        <div class="input-group-btn">
+	                            <button class="btn btn-default" type="button">Go!</button>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="col-md-12 col-md-6">
+	                    <div class="input-group sale-input-grp">
+	                        <div class="input-group-addon"><span>Customer Name</span></div>
+	                        <input type="text" class="form-control" />
+	                    </div>
+	                    <div class="input-group sale-input-grp">
+	                        <div class="input-group-addon"><span>Address </span></div>
+	                        <input type="text" class="form-control" />
+	                    </div>
+	                    <div class="input-group sale-input-grp">
+	                        <div class="input-group-addon"><span>Date </span></div>
+	                        <input type="date" name="date" class="form-control" />
+	                    </div>
+	                    <div class="input-group sale-input-grp">
+	                        <div class="input-group-addon"><span>Payment Status</span></div>
+	                        <input type="text" class="form-control" />
+	                    </div>
+	                </div>
+	            </div>
+	        </form>
+	    </div>
+	</div>
+
+		<div class="ui-widget">
+			<label for="birds">Birds: </label> <input id="birds" />
+		</div>
+
+		<div class="ui-widget" style="margin-top: 2em; font-family: Arial">
+			Result:
+			<div id="log" style="height: 200px; width: 300px; overflow: auto;"
+				class="ui-widget-content"></div>
+		</div>
+
+		<script type = "text/javascript" language = "javascript">
+         $(document).ready(function() {
+        	 function log( message ) {
+        		 $("#log").html(message);
+        	     //alert(message);
+        	    }
+        	 $( "#birds" ).autocomplete({
+        		 source: function( request, response ) {
+        			 $.ajax( {
+        				 url : "/restHome/test/" + $.now(),
+        				 dataType: "json",
+        				 data: {
+        			            term: request.term
+        			          },
+        				 success: function( data ) {
+        					 var formatedData= data.map(function(val){ return { value:val.errorId, id:val.errorMessage, label:val.errorId } }) 
+        					console.log(formatedData);
+        					response(formatedData);
+        			     },
+        			 });
+        		 },
+        		 minLength: 2,
+        		 select: function( event, ui ) {
+        			 //debugger
+        			 log( "Selected: " + ui.item.value + " aka " + ui.item.id );
+        		 }
+        	 });
+        });
+    </script>
+	</div>
+</body>
+</html>
