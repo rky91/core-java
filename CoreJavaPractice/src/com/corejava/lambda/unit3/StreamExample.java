@@ -19,7 +19,7 @@ public class StreamExample {
 		
 		personList.stream()
 		.filter(p -> p.getLastName().startsWith("Y"))
-		.forEach(System.out::println); //method Reference
+		.forEach(System.out::println); //method Reference Expression
 		
 		
 	}
