@@ -2,6 +2,8 @@ package com.corejava.lambda.unit3;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.corejava.lambda.unit1.Person;
 
@@ -21,6 +23,11 @@ public class StreamExample {
 		.filter(p -> p.getLastName().startsWith("Y"))
 		.forEach(System.out::println); //method Reference Expression
 		
+		Map<Integer, Integer> demo = new ConcurrentHashMap<Integer, Integer>();
+		
+		demo.put(1, null);
+		
+		System.out.println(demo.get(1));
 		
 	}
 
