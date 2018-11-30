@@ -23,11 +23,16 @@ public class App {
 		empList.forEach(System.out :: println);
 		
 		
-		
+		//Sort employee by his salary
 		Collections.sort(empList, Employee.SalaryComparator);
 		System.out.println("After sorting with Comaprator for Salary.....");
 		empList.forEach(System.out :: println);
 		
+		
+		//sort Employee by his first name
+		Collections.sort(empList, Employee.FnameComparator);
+		System.out.println("After sorting with Comaprator for First name.....");
+		empList.forEach(System.out :: println);
 
 	}
 	
