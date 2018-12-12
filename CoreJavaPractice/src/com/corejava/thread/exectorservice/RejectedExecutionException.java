@@ -6,6 +6,13 @@ import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+
+/*
+ * Author : Rakesh Jena
+ * Email : rakeshkumar.jena91@yahoo.com
+ *  
+ *  */
+
 public class RejectedExecutionException {
 
 	public static void main(String[] args) {

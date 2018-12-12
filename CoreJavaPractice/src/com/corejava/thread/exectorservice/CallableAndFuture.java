@@ -6,6 +6,12 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+/*
+ * Author : Rakesh Jena
+ * Email : rakeshkumar.jena91@yahoo.com
+ *  
+ *  */
+
 public class CallableAndFuture {
 
 	public static void main(String[] args) {
