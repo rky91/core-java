@@ -16,6 +16,12 @@ public class JavaExecutorService1 {
 	 *  	a. Fetch the next task from the queue
 	 *  	b. Execute the fetched task
 	 *  - This will continue till the queue is empty.
+	 *  
+	 * 4. What is ideal pool size?
+	 * 	- It depends on the type of processing you are doing.
+	 * 	- Example:
+	 * 		a. If you are doing CPU intensive processing where task takes lots of CPU, in this case the pool size sould be
+	 * 		   the number of processor is available in the system.
 	 * 
 	 * 
 	 * */
@@ -23,7 +29,9 @@ public class JavaExecutorService1 {
 	public static void main(String[] args) {
 		
 		//Create Thread pool
-		ExecutorService service = Executors.newFixedThreadPool(10);
+		int coreCounter = Runtime.getRuntime().availableProcessors(); //Check for the no of processor available
+		System.out.println("number of processor available : "+coreCounter);
+		ExecutorService service = Executors.newFixedThreadPool(coreCounter);
 		
 		//Submit the task to the thread pool for execution
 		for(int i=0; i<30; i++) {
@@ -39,7 +47,7 @@ class Task implements Runnable{
 
 	@Override
 	public void run() {
-		System.out.println("Task Completed.");
+		System.out.println("Task Completed." + Thread.currentThread().getName());
 		
 	}
 	
