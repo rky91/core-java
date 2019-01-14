@@ -1,4 +1,5 @@
 id,name,dept,salary
-1,Peter,001,12000
-2,Sam,002,13000
-3,Ryan,003,10000
+1,Peter,1,12000
+2,Sam,2,13000
+3,Ryan,3,10000
+4,Rakesh,1,5000
