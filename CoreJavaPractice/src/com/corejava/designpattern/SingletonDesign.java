@@ -1,6 +1,7 @@
 package com.corejava.designpattern;
 
 import java.lang.reflect.Constructor;
+import java.util.stream.Stream;
 
 class Singleton{
 	
