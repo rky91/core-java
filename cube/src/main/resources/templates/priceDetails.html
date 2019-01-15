@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"
+xmlns:th="http://www.thymeleaf.org"
+	layout:decorator="layouts/main">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<body>
+	<div layout:fragment="content">
+	<div class="container">
+	<div class="panel panel-primary">
+    	<div class="panel-heading">
+        	<h3 class="panel-title">Price Details &nbsp; &nbsp; </h3>
+        </div>
+	    <div class="panel-body">
+	    	<form th:object="${priceDetailsObj}" th:action="@{/addOrUpdatePrice}">
+	        <div class="row">
+	        	<input type="hidden" th:field="*{id}"/>
+	            <div class="col-md-12 col-md-6">
+	                <div class="input-group prod-input-grp">
+	                    <div class="input-group-addon"><span>Group Code</span></div>
+	                    <input type="text" class="form-control" th:field="*{metalType}"/>
+	                </div>
+	                <div class="input-group prod-input-grp">
+	                    <div class="input-group-addon"><span>Group Name</span></div>
+	                    <input type="number" class="form-control" th:field="*{price}"/>
+	                </div>
+	            </div>
+	            <div class="col-md-12 col-md-6">
+	                <div class="input-group prod-input-grp">
+                        <div role="group" class="btn-group">
+						    <button class="btn btn-primary" type="submit">Add</button>
+						    <button class="btn btn-warning" type="reset" style="margin-left:14px;">Reset</button>
+						</div>
+                    </div>
+	            </div>
+	        </div>
+	        </form>
+	    </div>
+	</div>
+	</div>
+	</div>
+
+</body>
+</html>

@@ -4,9 +4,6 @@
 
 function addToCart() {
 	
-	
-	
-	
 	var prodId;
 	prodId = $("#productId").val();
 	//alert("Ajax called" + prodId);
