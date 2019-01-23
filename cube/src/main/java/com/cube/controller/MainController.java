@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -39,6 +40,7 @@ public class MainController {
 	@RequestMapping("/priceDetails")
 	public String addNewPriceDetails(Model model) {
 		model.addAttribute("priceDetailsObj", new Price());
+		model.addAttribute("priceList", priceService.getPriceList());
 		return "priceDetails";
 	}
 	
@@ -52,6 +54,15 @@ public class MainController {
 			log.info("PriceDeatils updation failed.");
 		}
 		model.addAttribute("priceDetailsObj", new Price());
+		model.addAttribute("priceList", priceService.getPriceList());
+		return "priceDetails";
+	}
+	
+	@GetMapping("/updatePrice/{id}")
+	public String updateProductPrice(@PathVariable String id, Model model) {
+		
+		model.addAttribute("priceDetailsObj", priceService.getPriceDetails(Long.parseLong(id)));
+		model.addAttribute("priceList", priceService.getPriceList());
 		return "priceDetails";
 	}
 

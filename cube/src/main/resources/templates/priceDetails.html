@@ -24,7 +24,7 @@ xmlns:th="http://www.thymeleaf.org"
 	                </div>
 	                <div class="input-group prod-input-grp">
 	                    <div class="input-group-addon"><span>Group Name</span></div>
-	                    <input type="number" class="form-control" th:field="*{price}"/>
+	                    <input type="number" class="form-control" th:field="*{price}" step=".01"/>
 	                </div>
 	            </div>
 	            <div class="col-md-12 col-md-6">
@@ -37,6 +37,26 @@ xmlns:th="http://www.thymeleaf.org"
 	            </div>
 	        </div>
 	        </form>
+	        
+	        <div class="table-responsive">
+	        	<table class="table">
+		        	<thead>
+		        		<tr>
+		        			<th>Metal Type</th>
+		        			<th>Price</th>
+		        			<th>action</th>
+		        		</tr>
+		            </thead>
+		            <tbody>
+		            	<tr th:each="price : ${priceList}">
+		            		<td th:text="${price.metalType}"></td>
+		            		<td th:text="${price.price}"></td>
+		            		<td><a class="btn btn-primary" href="#" th:href="@{'/updatePrice/' + ${price.id}}">Update</a></td>
+		            	</tr>
+		            </tbody>
+		        </table>
+	        
+	        </div>
 	    </div>
 	</div>
 	</div>
