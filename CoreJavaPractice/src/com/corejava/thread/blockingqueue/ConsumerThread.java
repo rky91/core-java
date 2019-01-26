@@ -19,7 +19,7 @@ private BlockingQueue<Message> queue;
 			Message msg;
 			while(!(msg=queue.take()).getMessage().equalsIgnoreCase("Exit") ) {
 				Thread.sleep(120);
-				System.out.println("Consumed == "+msg);
+				System.out.println("Consumed == "+msg + "----- Thread = "+Thread.currentThread().getName());
 			}
 			
 		} catch (InterruptedException e) {
