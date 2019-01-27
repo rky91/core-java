@@ -18,7 +18,7 @@ public class ProcessProducer implements Runnable{
 		//get the the "QUEUED" process from the DB
 		
 		for(long i=0;i<15;i++) {
-			Process process = new Process(i, i+"-File", true);
+			Process process = new Process(i, i+"- File", true);
 			try {
 				processQueue.put(process);
 				System.out.println(process.getId() + "- Produced");

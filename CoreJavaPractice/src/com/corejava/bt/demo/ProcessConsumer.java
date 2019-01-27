@@ -10,7 +10,7 @@ public class ProcessConsumer implements Runnable{
 	private ExecutorService service;
 	
 	public ProcessConsumer(BlockingQueue<Process> processQueue, ExecutorService service) {
-		System.out.println("ProcessConsumer constructor called **********************************************");
+		System.out.println("ProcessConsumer constructor called *********************************************");
 		this.processQueue = processQueue;
 		this.service = service;
 	}

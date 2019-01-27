@@ -7,6 +7,7 @@ public class Process {
 	private boolean flag;
 	
 	public Process(Long id, String fileName, boolean flag) {
+		
 		super();
 		this.id = id;
 		this.fileName = fileName;

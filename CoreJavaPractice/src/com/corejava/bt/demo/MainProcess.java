@@ -9,7 +9,7 @@ public class MainProcess {
 
 	public static void main(String[] args) {
 		
-		System.out.println("Main rocess started...");
+		System.out.println("Main rocess started....");
 		BlockingQueue<Process> processBlockingQueue = new ArrayBlockingQueue<Process>(10);
 		int coreCounter = Runtime.getRuntime().availableProcessors(); //Check for the no of processor available
 		ExecutorService service = Executors.newFixedThreadPool(coreCounter);
