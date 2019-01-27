@@ -2,6 +2,13 @@ package com.corejava.bt.demo;
 
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * Author : Rakesh Jena
+ * Email : rakeshkumar.jena91@yahoo.com
+ * 
+ * 
+ * **/
+
 public class ProcessProducer implements Runnable{
 	
 	private BlockingQueue<Process> processQueue;

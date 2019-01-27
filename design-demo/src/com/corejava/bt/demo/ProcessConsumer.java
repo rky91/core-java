@@ -3,7 +3,12 @@ package com.corejava.bt.demo;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 
-
+/**
+ * Author : Rakesh Jena
+ * Email : rakeshkumar.jena91@yahoo.com
+ * 
+ * 
+ * **/
 public class ProcessConsumer implements Runnable{
 	
 	private BlockingQueue<Process> processQueue;

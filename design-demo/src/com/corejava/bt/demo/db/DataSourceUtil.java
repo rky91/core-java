@@ -2,6 +2,14 @@ package com.corejava.bt.demo.db;
 
 import javax.sql.DataSource;
 
+
+/**
+ * Author : Rakesh Jena
+ * Email : rakeshkumar.jena91@yahoo.com
+ * 
+ * 
+ * **/
+
 public class DataSourceUtil {
 	
 	private static DataSourceUtil dataSourceUtilobj = null;
