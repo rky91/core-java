@@ -23,5 +23,11 @@ public class MainProcess {
 		
 
 	}
+	
+	public static <T> void demo(T type) {
+		
+		type.getClass().isInstance(Process.class);
+		
+	}
 
 }
